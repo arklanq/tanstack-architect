@@ -1,6 +1,6 @@
 {
   "name": "tanstack-architect",
-  "owner": { "name": "tanstack-architect contributors" },
+  "owner": { "name": "arklanq" },
   "plugins": [
     {
       "name": "tanstack-architect",
