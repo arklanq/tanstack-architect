@@ -1,6 +1,6 @@
 # TanStack libraries by requirement
 
-Maturity notes were checked on 2026-11-04. Verify them against current data before answering.
+Maturity notes were checked on 2026-11-05. Verify them against current data before answering.
 
 ## Application foundation
 

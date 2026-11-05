@@ -1,6 +1,6 @@
 # Stack compatibility
 
-Rejections here are hard rules unless the user explicitly asks for a migration. Check adapters against `https://tanstack.com/api/data/libraries`.
+Rejections here are hard rules unless the user explicitly asks for a migration. Check adapters against `https://tanstack.com/api/data/libraries`. A newly listed adapter removes a rejection only when the library was rejected for missing framework support. It never overrides concern ownership.
 
 ## Concern ownership
 
@@ -12,8 +12,8 @@ The most common mistake is suggesting a library for a concern that the framework
 | React Router framework mode or Remix (`@react-router/dev`, `@remix-run/*`) | Start, Router | Route modules, loaders, and actions. | Form uses `@tanstack/react-form-remix`. Query is useful for client-side caching beyond loaders. |
 | React Router library mode (`react-router` in a Vite app) | Start, Router | The existing router, including its search params hooks. | All client libraries remain available. |
 | TanStack Start (`@tanstack/react-start`, `@tanstack/solid-start`) | Router as a separate decision, because Start includes it | Start routes and server functions. | Form uses `@tanstack/react-form-start`. Query integrates with the router. |
-| TanStack Router in a client-rendered app | Start, unless SSR or server code is required | The existing router. | Query fits route loaders. |
-| Vite with React or Solid and no router | Start, unless SSR or server code is required | | Router is a candidate only if the app needs several routes or typed URL state. |
+| TanStack Router in a client-rendered app | Start. If SSR or server code is required, list that under Risks as a decision for the user. | The existing router. | Query fits route loaders. |
+| Vite with React or Solid and no router | Start. If SSR or server code is required, list that under Risks as a decision for the user. | | Router is a candidate only if the app needs several routes or typed URL state. |
 | Vue, Nuxt | Start, Router, Redact, Markdown and Highlight React adapters | Vue Router, Nuxt routing. | Query, Table, Form, Virtual, and others have Vue adapters. |
 | Svelte, SvelteKit | Start, Router, Redact | SvelteKit routing and form actions. | Query, Table, Form, and Virtual have Svelte adapters. |
 | Angular | Start, Router, Redact | Angular Router, and Reactive Forms when they are in place. | Query, Table, Form, and Virtual have Angular adapters. |
@@ -24,6 +24,12 @@ The most common mistake is suggesting a library for a concern that the framework
 | Backend, CLI, or worker with no UI | Everything with a UI or client role | | Consider only AI (server use) and Markdown or Highlight (HTML output). |
 
 If the stack is not listed, apply the same test: does the framework own routing, data loading, or forms? If so, reject the library for that concern.
+
+Framework support applies in every row, even when a row does not repeat it:
+
+- Redact is React only.
+- Outside React, Markdown and Highlight offer only their framework-neutral output, such as HTML.
+- `@tanstack/vue-router` and `@tanstack/vue-start` are on npm, but TanStack's metadata lists Router and Start only for React and Solid. Treat them as unsupported until the metadata lists Vue.
 
 ## Existing libraries
 

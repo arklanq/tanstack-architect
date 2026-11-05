@@ -70,7 +70,7 @@ Always use these exact section headings and table columns, because other tools a
 <Beta or pre-1.0 choices and anything not verified.>
 
 ## Next steps
-<Install commands, then `npx @tanstack/intent@latest install`.>
+<Install commands in the project's package manager, then `npx @tanstack/intent@latest install`. Omit this section when nothing is recommended.>
 ```
 
 Omit empty sections. List only rejected libraries that someone would reasonably expect, not every library that does not apply.
