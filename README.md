@@ -48,6 +48,16 @@ mkdir -p ~/.codex/agents && curl -fsSL https://raw.githubusercontent.com/arklanq
 
 The skill works without the agent.
 
+## Usage
+
+Open your project in Claude Code or Codex, and give the agent your PRD:
+
+```text
+Use the tanstack-architect agent on this PRD: <your PRD>
+```
+
+With the skill alone, ask your agent to plan the architecture from the PRD. The skill also starts on its own when you ask for that kind of plan.
+
 ## Maintenance
 
 The agent's instructions exist twice: `agents/tanstack-architect.md` and `codex/agents/tanstack-architect.toml`. Keep them identical, and bump the version in `plugin.json` and `.claude-plugin/plugin.json` together.
