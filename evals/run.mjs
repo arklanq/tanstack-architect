@@ -29,9 +29,9 @@ function runClaude(testCase) {
   ];
   return new Promise((resolve) => {
     let stdout = '';
-    const child = spawn('claude', args, { cwd, stdio: ['ignore', 'pipe', 'inherit'] });
+    const child = spawn('claude', args, { cwd, stdio: ['ignore', 'pipe', 'inherit'], timeout: 15 * 60 * 1000 });
     child.stdout.on('data', (chunk) => { stdout += chunk; });
-    child.on('close', () => resolve(stdout));
+    child.on('close', (exitCode) => resolve({ stream: stdout, exitCode }));
   });
 }
 
@@ -43,7 +43,7 @@ function recommendedLibraries(report) {
     .map((line) => line.split('|')[2]?.trim() ?? '');
 }
 
-function check(testCase, stream) {
+function check(testCase, { stream, exitCode }) {
   const events = stream.split('\n').filter(Boolean).flatMap((line) => {
     try { return [JSON.parse(line)]; } catch { return []; }
   });
@@ -53,6 +53,8 @@ function check(testCase, stream) {
   const libraries = recommendedLibraries(report);
   const has = (name) => libraries.some((cell) => new RegExp(`\\b${name}\\b`, 'i').test(cell));
   const problems = [
+    ...(exitCode === 0 ? [] : [`claude exit code: ${exitCode}`]),
+    ...(report.trim() ? [] : ['empty report']),
     ...(usedSkill || testCase.skillOptional ? [] : ['the skill was not used']),
     ...(/^## +Stack\s*$/m.test(report) || testCase.skillOptional ? [] : ['no report format']),
     ...testCase.forbidden.filter(has).map((name) => `forbidden: ${name}`),
