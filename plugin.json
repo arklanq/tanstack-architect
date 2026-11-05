@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "tanstack-architect",
+  "version": "0.1.0",
+  "description": "Chooses TanStack libraries that fit your stack and designs an app architecture from a PRD. Unofficial.",
+  "license": "MIT",
+  "keywords": ["tanstack", "architecture", "prd", "library-selection"]
+}

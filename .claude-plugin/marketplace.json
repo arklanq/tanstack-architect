@@ -1,0 +1,11 @@
+{
+  "name": "tanstack-architect",
+  "owner": { "name": "tanstack-architect contributors" },
+  "plugins": [
+    {
+      "name": "tanstack-architect",
+      "source": "./",
+      "description": "Chooses TanStack libraries that fit your stack and designs an app architecture from a PRD. Unofficial."
+    }
+  ]
+}

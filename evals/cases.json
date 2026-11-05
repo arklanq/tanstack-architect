@@ -1,0 +1,41 @@
+[
+  {
+    "id": "nextjs-url-filters",
+    "prompt": "Plan the architecture for this PRD. Do not write code. PRD: a customer list page with 50,000 customers. Users sort and filter it, and filters must survive a refresh and be shareable by link. Data refreshes in the background.",
+    "packageJson": { "name": "app", "dependencies": { "next": "16.0.0", "react": "19.0.0", "react-dom": "19.0.0" } },
+    "forbidden": ["Router", "Start"]
+  },
+  {
+    "id": "nuxt-orders",
+    "prompt": "Plan the architecture for this PRD. Do not write code. PRD: an orders dashboard with a sortable grid, a multi-step order edit form with validation, and a page with sales charts.",
+    "packageJson": { "name": "app", "dependencies": { "nuxt": "4.0.0", "vue": "3.5.0" } },
+    "forbidden": ["Router", "Start", "Redact"],
+    "required": ["Table"]
+  },
+  {
+    "id": "existing-libraries",
+    "prompt": "Plan the architecture for this PRD. Do not write code. PRD: add an account settings area with a long profile form and a list of invoices fetched from the API.",
+    "packageJson": { "name": "app", "dependencies": { "react": "19.0.0", "react-dom": "19.0.0", "react-router": "8.0.0", "react-hook-form": "7.0.0", "swr": "2.0.0" }, "devDependencies": { "vite": "7.0.0" } },
+    "forbidden": ["Router", "Start", "Form", "Query"]
+  },
+  {
+    "id": "expo-mobile",
+    "prompt": "Plan the architecture for this PRD. Do not write code. PRD: a mobile app that shows a long feed of posts fetched from an API, with pull to refresh and offline reading of cached posts.",
+    "packageJson": { "name": "app", "dependencies": { "expo": "54.0.0", "expo-router": "6.0.0", "react": "19.0.0", "react-native": "0.82.0" } },
+    "forbidden": ["Router", "Start", "Virtual", "Hotkeys"],
+    "required": ["Query"]
+  },
+  {
+    "id": "simple-landing",
+    "prompt": "Plan the architecture for this PRD. Do not write code. PRD: a one-page marketing site for a bakery, with opening hours, a photo gallery, and a phone number.",
+    "packageJson": { "name": "site", "dependencies": { "astro": "5.0.0" } },
+    "skillOptional": true,
+    "forbidden": ["Router", "Start", "Query", "Table", "Form", "DB", "Virtual"]
+  },
+  {
+    "id": "greenfield-agent",
+    "prompt": "Use the tanstack-architect agent on this PRD and return its report unchanged. PRD: an internal admin panel for a warehouse, used after login, on top of our existing REST API. Staff browse stock in a large grid, edit items in forms, and use keyboard shortcuts for frequent actions.",
+    "forbidden": ["Redact", "Config"],
+    "required": ["Query", "Table"]
+  }
+]
