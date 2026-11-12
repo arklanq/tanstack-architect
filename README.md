@@ -70,6 +70,12 @@ With the skill alone, ask your agent the same things without naming the agent. T
 
 The agent's instructions exist twice: `agents/tanstack-architect.md` and `codex/agents/tanstack-architect.toml`. Keep them identical, and bump the version in `plugin.json` and `.claude-plugin/plugin.json` together.
 
+To install the plugin from this checkout in Claude Code and Codex, including the Codex agent, run this from the project root. It needs both CLIs, and you can run it again after each change, because Codex keeps a copy of the plugin:
+
+```bash
+bun run install:local
+```
+
 Run the evals after changing the skill. They need the Claude Code CLI and use your account:
 
 ```bash

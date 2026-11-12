@@ -1,0 +1,7 @@
+{
+  "name": "tanstack-architect",
+  "private": true,
+  "scripts": {
+    "install:local": "claude plugin marketplace add \"$PWD\" && claude plugin install tanstack-architect@tanstack-architect && codex plugin marketplace add \"$PWD\" && codex plugin add tanstack-architect@tanstack-architect && mkdir -p ~/.codex/agents && cp codex/agents/tanstack-architect.toml ~/.codex/agents/tanstack-architect.toml"
+  }
+}
