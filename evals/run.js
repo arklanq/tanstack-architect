@@ -35,12 +35,17 @@ function runClaude(testCase) {
   });
 }
 
-function recommendedLibraries(report) {
-  const section = report.split(/^## +Recommended\s*$/m)[1]?.split(/^#{1,2} /m)[0] ?? '';
+function tableColumn(report, heading, column) {
+  const section = report.split(new RegExp(`^## +${heading}\\s*$`, 'm'))[1]?.split(/^#{1,2} /m)[0] ?? '';
   return section
     .split('\n')
-    .filter((line) => line.startsWith('|') && !/^\|\s*(-|Requirement)/.test(line))
-    .map((line) => line.split('|')[2]?.trim() ?? '');
+    .filter((line) => line.startsWith('|') && !/^\|\s*(-|Requirement|Concern)/.test(line))
+    .map((line) => line.split('|')[column]?.trim() ?? '');
+}
+
+// Libraries the report proposes: new ones under Recommended, and replacements under Migration.
+function recommendedLibraries(report) {
+  return [...tableColumn(report, 'Recommended', 2), ...tableColumn(report, 'Migration', 3)];
 }
 
 function check(testCase, { stream, exitCode }) {

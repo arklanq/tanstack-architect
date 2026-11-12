@@ -37,5 +37,11 @@
     "prompt": "Use the tanstack-architect agent on this PRD and return its report unchanged. PRD: an internal admin panel for a warehouse, used after login, on top of our existing REST API. Staff browse stock in a large grid, edit items in forms, and use keyboard shortcuts for frequent actions.",
     "forbidden": ["Redact", "Config"],
     "required": ["Query", "Table"]
+  },
+  {
+    "id": "nextjs-migration-review",
+    "prompt": "Review this existing app and tell me which parts are worth moving to TanStack libraries. Do not write code. The app has a customer list with server-side filters, a long signup form, and data fetched in Client Components.",
+    "packageJson": { "name": "app", "dependencies": { "next": "16.0.0", "react": "19.0.0", "react-dom": "19.0.0", "swr": "2.0.0", "react-hook-form": "7.0.0" } },
+    "forbidden": ["Router", "Start"]
   }
 ]
