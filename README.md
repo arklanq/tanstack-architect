@@ -50,13 +50,21 @@ The skill works without the agent.
 
 ## Usage
 
-Open your project in Claude Code or Codex, and give the agent your PRD:
+Open your project in Claude Code or Codex, and tell the agent what you want. Your prompt sets the goal and the input, for example:
 
 ```text
 Use the tanstack-architect agent on this PRD: <your PRD>
 ```
 
-With the skill alone, ask your agent to plan the architecture from the PRD. The skill also starts on its own when you ask for that kind of plan.
+```text
+Use the tanstack-architect agent to plan this feature. I only have a rough idea: <your idea>
+```
+
+```text
+Use the tanstack-architect agent to review this repo and tell me which parts are worth moving to TanStack libraries.
+```
+
+With the skill alone, ask your agent the same things without naming the agent. The skill also starts on its own when you ask for that kind of plan or review.
 
 ## Maintenance
 

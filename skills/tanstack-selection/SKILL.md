@@ -1,11 +1,11 @@
 ---
 name: tanstack-selection
-description: Choose which TanStack libraries fit an app, and rule out the ones that conflict with its stack. Use whenever planning or designing the architecture of a web or mobile app or feature from a PRD or product brief, in any framework, and when choosing libraries for data fetching, caching, routing, URL state, forms, tables, long lists, charts, keyboard shortcuts, offline or optimistic UI, or AI chat. Use it even if TanStack is not mentioned. Not for API usage of a library that is already chosen.
+description: Choose which TanStack libraries fit an app, and rule out the ones that conflict with its stack. Use whenever planning or designing the architecture of a web or mobile app or feature in any framework, whatever the starting point: a PRD, a rough idea, or an existing codebase. Also use when asked whether an existing app should adopt TanStack libraries, and when choosing libraries for data fetching, caching, routing, URL state, forms, tables, long lists, charts, keyboard shortcuts, offline or optimistic UI, or AI chat. Use it even if TanStack is not mentioned. Not for API usage of a library that is already chosen.
 ---
 
 # TanStack selection
 
-Turn product requirements into a short list of TanStack libraries that this app can actually use. Recommending nothing is a valid result. The stack decides first, the requirements second.
+Turn what the user gives you into a short list of TanStack libraries that this app can actually use. The user's request sets the goal, the input, and the depth, for example a plan from a PRD, a plan from a rough idea, or a review of existing code. Two things stay fixed: the stack decides before the requirements, and the compatibility gate always applies. Recommending nothing is a valid result.
 
 ## Workflow
 
@@ -17,9 +17,11 @@ Record the UI framework, the meta-framework, and which library already owns each
 
 Only when the directory has none of these files is this a new project. Then use the constraints in the brief. If the brief sets no stack, follow "No stack chosen yet" in [references/stack-compatibility.md](references/stack-compatibility.md) and state the choice as an assumption.
 
-### 2. Extract the requirements
+### 2. Find the requirements
 
-List what the product must do, in product terms. Keep requirements that imply a technical capability, such as "filters survive a page refresh" or "the table holds 100,000 rows". Do not invent requirements to justify a library.
+Take them from whatever the user provided: a document, a description, the existing code, or the conversation. List what the product must do, in product terms. Keep requirements that imply a technical capability, such as "filters survive a page refresh" or "the table holds 100,000 rows". Do not invent requirements to justify a library.
+
+If the input is too thin to choose, name the answers that would change the result. Ask for them when you can talk to the user. Otherwise, state them as assumptions.
 
 ### 3. Match candidates
 
@@ -35,7 +37,9 @@ Check every candidate in this order against [references/stack-compatibility.md](
 4. **Runtime.** The library works where the code runs, such as a browser, React Native, or a server.
 5. **Maturity.** The risk of a beta or pre-1.0 library is acceptable for this requirement.
 
-A rejected library is never offered as an option, a follow-up, or a "could also". Do not propose changing the framework or replacing an existing library to make a candidate fit, unless the user asked for a migration.
+A rejected library is never offered as an option, a follow-up, or a "could also". Do not propose changing the framework or replacing an existing library to make a candidate fit, unless the user asked for it.
+
+When the user asks to replace existing libraries or hand-written code, rule 3 no longer rejects. Weigh the benefit against the cost of the change instead, and say when keeping the current solution is better. Rules 1, 2, 4, and 5 still apply. Consider a framework change only when the user explicitly asks for one.
 
 When a library is rejected, solve the requirement with what the stack already provides, and name that solution.
 
@@ -51,7 +55,7 @@ Current data overrides the framework lists and maturity notes in the references.
 
 ### 6. Report the result
 
-Always use these exact section headings and table columns, because other tools and agents read this report. Write the content in the language of the conversation, and keep the headings in English. Any wider plan goes after this report, not instead of it.
+Unless the user asks for a different form, use these exact section headings and table columns, because other tools and agents read this report. Write the content in the language of the conversation, and keep the headings in English. Any wider plan goes after this report, not instead of it.
 
 ```markdown
 ## Stack
@@ -62,6 +66,10 @@ Always use these exact section headings and table columns, because other tools a
 
 ## Handled without TanStack
 | Requirement | Solution | Why |
+
+## Migration
+<Only when the user asked about replacing existing code, and only for libraries that passed the gate. Rejected libraries go under "Rejected by the stack", and changes that need no TanStack library go under "Handled without TanStack". Verdict is migrate, later, or keep.>
+| Concern | Current solution | Library | Benefit | Cost | Verdict |
 
 ## Rejected by the stack
 | Library | Reason |
