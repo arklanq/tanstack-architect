@@ -2,13 +2,13 @@
   "name": "tanstack-architect",
   "owner": { "name": "arklanq" },
   "metadata": {
-    "description": "Chooses TanStack libraries that fit your stack and designs an app architecture from a PRD. Unofficial."
+    "description": "Chooses TanStack libraries that fit your stack and designs or reviews an app architecture, from a PRD, a rough idea, or existing code. Unofficial."
   },
   "plugins": [
     {
       "name": "tanstack-architect",
       "source": "./",
-      "description": "Chooses TanStack libraries that fit your stack and designs an app architecture from a PRD. Unofficial."
+      "description": "Chooses TanStack libraries that fit your stack and designs or reviews an app architecture, from a PRD, a rough idea, or existing code. Unofficial."
     }
   ]
 }

@@ -1,6 +1,6 @@
 # TanStack Architect
 
-Give your coding agent a PRD, and it picks the TanStack libraries that fit your stack. It also rules out the ones that don't. For example, it never suggests TanStack Router in a Next.js app.
+Give your coding agent a PRD, a rough idea, or an existing codebase, and it picks the TanStack libraries that fit your stack. It also rules out the ones that don't. For example, it never suggests TanStack Router in a Next.js app.
 
 This is an unofficial community project, not affiliated with TanStack.
 
@@ -9,7 +9,7 @@ This is an unofficial community project, not affiliated with TanStack.
 | Part | Purpose |
 | --- | --- |
 | `tanstack-selection` skill | Reads the stack, matches requirements to libraries, and rejects anything that conflicts. |
-| `tanstack-architect` agent | Turns a PRD into a written architecture proposal: the skill's library choices, the main parts of the app, how data flows through them, and ordered implementation steps. It only proposes and leaves your code unchanged. |
+| `tanstack-architect` agent | Turns a PRD or a rough idea into a written architecture proposal: the skill's library choices, the main parts of the app, how data flows through them, and ordered implementation steps. For an existing codebase, it reviews what is worth moving to TanStack and orders the migration steps. It only proposes and leaves your code unchanged. |
 
 The skill checks current data from `tanstack.com` when it runs. For API usage, it hands over to the skills that ship with TanStack packages, through [TanStack Intent](https://tanstack.com/intent/latest).
 
