@@ -1,5 +1,5 @@
 // Runs each PRD in a temporary project through Claude Code and checks the "Recommended" table.
-// Usage: node evals/run.mjs [--model <model>].
+// Usage: node evals/run.js [--model <model>].
 
 import { spawn } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';

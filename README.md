@@ -65,7 +65,7 @@ The agent's instructions exist twice: `agents/tanstack-architect.md` and `codex/
 Run the evals after changing the skill. They need the Claude Code CLI and use your account:
 
 ```bash
-node evals/run.mjs
+node evals/run.js
 ```
 
 ## License
