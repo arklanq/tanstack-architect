@@ -11,11 +11,11 @@ Turn product requirements into a short list of TanStack libraries that this app 
 
 ### 1. Establish the stack
 
-For an existing project, read the evidence before reasoning about libraries: `package.json` of the package being changed (not only the monorepo root), framework config files, and the lockfile.
+Always inspect the working directory first, even when the brief reads like a new product. Look for `package.json` of the package being changed (not only the monorepo root), framework config files, and the lockfile. If any of them exists, this is an existing project, and they override anything you would otherwise assume.
 
 Record the UI framework, the meta-framework, and which library already owns each concern: routing, server state, forms, tables, charts, client state, and AI.
 
-For a new project, use the constraints in the brief. If the brief sets no stack, follow "No stack chosen yet" in [references/stack-compatibility.md](references/stack-compatibility.md) and state the choice as an assumption.
+Only when the directory has none of these files is this a new project. Then use the constraints in the brief. If the brief sets no stack, follow "No stack chosen yet" in [references/stack-compatibility.md](references/stack-compatibility.md) and state the choice as an assumption.
 
 ### 2. Extract the requirements
 
@@ -55,7 +55,7 @@ Always use these exact section headings and table columns, because other tools a
 
 ```markdown
 ## Stack
-<UI framework, meta-framework, and who owns routing and data. Mark assumptions.>
+<UI framework, meta-framework, and who owns routing and data. Name the files you read, or say that none exist. Mark assumptions.>
 
 ## Recommended
 | Requirement | Library | Package | Why it fits this stack |
