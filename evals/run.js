@@ -1,4 +1,4 @@
-// Runs each PRD in a temporary project through Claude Code and checks the "Recommended" table.
+// Runs each case in a temporary project through Claude Code and checks the "Recommended" and "Migration" tables.
 // Usage: node evals/run.js [--model <model>].
 
 import { spawn } from 'node:child_process';
@@ -10,6 +10,9 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cases = JSON.parse(readFileSync(join(root, 'evals/cases.json'), 'utf8'));
 const modelFlag = process.argv.indexOf('--model');
+if (modelFlag > -1 && !process.argv[modelFlag + 1]) {
+  throw new Error('--model needs a value.');
+}
 const model = modelFlag > -1 ? ['--model', process.argv[modelFlag + 1]] : [];
 const outputDir = mkdtempSync(join(tmpdir(), 'tanstack-architect-evals-'));
 
@@ -35,17 +38,21 @@ function runClaude(testCase) {
   });
 }
 
-function tableColumn(report, heading, column) {
+function tableRows(report, heading) {
   const section = report.split(new RegExp(`^## +${heading}\\s*$`, 'm'))[1]?.split(/^#{1,2} /m)[0] ?? '';
   return section
     .split('\n')
-    .filter((line) => line.startsWith('|') && !/^\|\s*(-|Requirement|Concern)/.test(line))
-    .map((line) => line.split('|')[column]?.trim() ?? '');
+    .filter((line) => line.startsWith('|') && !/^\|\s*(:?-|Requirement|Concern)/.test(line))
+    .map((line) => line.split('|').map((cell) => cell.trim()));
 }
 
-// Libraries the report proposes: new ones under Recommended, and replacements under Migration.
+// Libraries the report proposes: new ones under Recommended, and replacements under Migration that it does not keep.
 function recommendedLibraries(report) {
-  return [...tableColumn(report, 'Recommended', 2), ...tableColumn(report, 'Migration', 3)];
+  const recommended = tableRows(report, 'Recommended').map((cells) => cells[2] ?? '');
+  const migrated = tableRows(report, 'Migration')
+    .filter((cells) => !/^\W*keep\b/i.test(cells[6] ?? ''))
+    .map((cells) => cells[3] ?? '');
+  return [...recommended, ...migrated];
 }
 
 function check(testCase, { stream, exitCode }) {
